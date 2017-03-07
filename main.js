@@ -67,9 +67,6 @@ function BrandNewMachine(name, price, money, sugar, temperature) {
 
     // Подогреть кофе до указаной температуры
     this.temperature = temperature;
-
-    // Вызов метода родителя внутри своего
-    CoffeeMachine.prototype.countMoney.apply();
 }
 
 // Зададим наследование
@@ -131,7 +128,7 @@ coffeeBtn.addEventListener("click", function() {
     //
     innerResultP.innerHTML += '<br><br> из класса \'Новомодная машина\'' + brandNewMachine.getTemperature();
     console.log(brandNewMachine);
-    innerResultP.innerHTML += '<br> из класса \'Новомодная машина\' ' + brandNewMachine.makeCoffee();
+    // innerResultP.innerHTML += '<br> из класса \'Новомодная машина\' ' + brandNewMachine.prototype.countMoney();
 
 
 });
