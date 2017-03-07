@@ -1,0 +1,36 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("purty_wood.png");
+}
+
+h1 {
+    color: #090624;
+    text-align: center;
+}
+
+#outOfMachine {
+    text-align: center;
+    line-height: 3;
+}
+
+button {
+    width: 40%;
+}
+
+#innerMachine {
+    background: #E1D3EE;
+    min-height: 600px;
+    border: 5px solid #090624;
+}
+
+#outOfMachine {
+    background: #E1D3EE;
+    min-height: 600px;
+    border: 5px solid #090624;
+}
