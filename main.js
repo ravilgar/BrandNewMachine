@@ -56,15 +56,8 @@ function CoffeeMachine(name, price, money, sugar) {
 
 // Дочерний класс "Новомодная машина"
 function BrandNewMachine(name, price, money, sugar, temperature) {
-    // Название кофе
-    this.name = name;
-    // цена
-    this.price = price;
-    // сумма денег
-    this.money = money;
-    // наличие сахара в кофе
-    this.sugar = sugar;
-
+    // обращение к конструктору CoffeeMachine
+    CoffeeMachine.call(this, name, price, money, sugar);
     // Подогреть кофе до указаной температуры
     this.temperature = temperature;
 }
@@ -72,10 +65,10 @@ function BrandNewMachine(name, price, money, sugar, temperature) {
 // Зададим наследование
 BrandNewMachine.prototype = Object.create(CoffeeMachine.prototype);
 
-
 // Добавим свой метод
 BrandNewMachine.prototype.getTemperature = function() {
-    return "температура кофе " + this.temperature + " C" };
+    return "из класса \'Новомодная машина\': температура кофе " + this.temperature + " C"
+};
 
 
 
@@ -98,8 +91,6 @@ var coffeeBtn = document.querySelector("button");
 coffeeBtn.addEventListener("click", function() {
     // сумма, введенная пользователем
     var money = Number(moneyNumInp.value);
-    console.log('money  ' + money);
-
     // название кофе
     var coffeename;
     // стоимость кофе, если ничего не выбрано
@@ -111,24 +102,23 @@ coffeeBtn.addEventListener("click", function() {
             coffeename = document.getElementsByClassName("coffeeLabel")[i].innerHTML;
         }
     }
-
     // Опция добавить сахар
     var sugar = sugarInp.checked;
+
 
     // создаем объект класса кофе-машины
     var coffeeMachine = new CoffeeMachine(coffeename, coffeePrice, money, sugar);
 
-    // Вывод на экран
+    // Вывод на экран значений, полученных от методов объекта класса кофе-машины
     resultP.innerHTML = coffeeMachine.makeCoffee() + '<br>';
     resultP.innerHTML += coffeeMachine.addSugar() + '<br>';
-    innerResultP.innerHTML += '<br>' + coffeeMachine.countMoney();
+    innerResultP.innerHTML += '<br><br> ' + coffeeMachine.countMoney();
 
     // объект дочернего класса, с температурой кофе 38 градусов
     var brandNewMachine = new BrandNewMachine(coffeename, coffeePrice, money, sugar, 38);
-    //
-    innerResultP.innerHTML += '<br><br> из класса \'Новомодная машина\'' + brandNewMachine.getTemperature();
+    // вызов метода, определенного в дочернем классе
+    innerResultP.innerHTML += '<br><br> ' + brandNewMachine.getTemperature();
     console.log(brandNewMachine);
-    // innerResultP.innerHTML += '<br> из класса \'Новомодная машина\' ' + brandNewMachine.prototype.countMoney();
-
-
+    // вызов метода, определенного в родительском классе
+    innerResultP.innerHTML += '<br> ' + brandNewMachine.countMoney();
 });
